@@ -22,6 +22,9 @@ A command to shut down the bot
 5. Go to `https://discordapp.com/oauth2/authorize?client_id=<YOUR_BOT_CLIENT_ID>&scope=bot&permissions=36785216`
 6. Add the bot to your server
 
+### Other Info
+- The program will save your token to ./config.txt. To use another bot, simply replace the token.
+
 ### Bot commands
 
 Assuming `prefix` is set to `!`.
