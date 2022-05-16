@@ -2,7 +2,9 @@ package me.rylan.listeners;
 
 import me.rylan.BotConfig;
 import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Invite;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -20,13 +22,13 @@ public class Listener extends ListenerAdapter {
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         Member member = event.getMember();
-        String message = event.getMessage().getContentRaw();
+        String messageSent = event.getMessage().getContentRaw();
 
-        if ((message.equalsIgnoreCase(BotConfig.getPrefix() + "shutdown")) &&
+        if ((messageSent.equalsIgnoreCase(BotConfig.getPrefix() + "shutdown")) &&
                 (member.hasPermission(Permission.ADMINISTRATOR))) {
             event.getJDA().shutdown();
             System.exit(0);
-        } else if ((message.equalsIgnoreCase(BotConfig.getPrefix() + "shutdown")) &&
+        } else if ((messageSent.equalsIgnoreCase(BotConfig.getPrefix() + "shutdown")) &&
                 (!member.hasPermission(Permission.ADMINISTRATOR))) {
             event.getMessage().getChannel().sendMessage("Only administrators of " + event.getJDA().getSelfUser().getName() + " can use this command!").queue();
         }
