@@ -13,17 +13,21 @@ public class Listener extends ListenerAdapter {
 
     @Override
     public void onReady(@Nonnull ReadyEvent event) {
-        System.out.println(event.getJDA().getSelfUser().getName() + " is online!");
+        String bot = event.getJDA().getSelfUser().getName();
+        System.out.println(bot + " is online!");
     }
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         Member member = event.getMember();
+        String message = event.getMessage().getContentRaw();
 
-        if ((event.getMessage().getContentRaw().equalsIgnoreCase(BotConfig.getPrefix() + "shutdown")) && (member.hasPermission(Permission.ADMINISTRATOR))) {
+        if ((message.equalsIgnoreCase(BotConfig.getPrefix() + "shutdown")) &&
+                (member.hasPermission(Permission.ADMINISTRATOR))) {
             event.getJDA().shutdown();
             System.exit(0);
-        } else if ((event.getMessage().getContentRaw().equalsIgnoreCase(BotConfig.getPrefix() + "shutdown")) && (!member.hasPermission(Permission.ADMINISTRATOR))) {
+        } else if ((message.equalsIgnoreCase(BotConfig.getPrefix() + "shutdown")) &&
+                (!member.hasPermission(Permission.ADMINISTRATOR))) {
             event.getMessage().getChannel().sendMessage("Only administrators of " + event.getJDA().getSelfUser().getName() + " can use this command!").queue();
         }
     }

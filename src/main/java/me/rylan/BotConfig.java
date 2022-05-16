@@ -33,7 +33,6 @@ public class BotConfig {
             activity = Activity.playing((config.getString("activity")));
 
             if (token == null || token.equalsIgnoreCase("BOT_TOKEN")) {
-                //TODO Create better interface for the user
                 System.out.print("Enter your bot token: ");
                 token = String.valueOf(new Scanner(System.in).nextLine());
 
