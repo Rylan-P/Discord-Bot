@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'me.lex'
+version '1.0-SNAPSHOT'
+//JDAVersion="4.3.0_339"
+
+repositories {
+    mavenCentral()
+    maven {
+        name 'm2-dv8tion'
+        url 'https://m2.dv8tion.net/releases'
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    implementation("net.dv8tion:JDA:4.3.0_339") {
+        exclude module: 'opus-java'
+    }
+
+    implementation 'com.typesafe:config:1.3.2'
+}
+
+test {
+    useJUnitPlatform()
+}
